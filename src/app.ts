@@ -93,6 +93,129 @@ app.get("/break", (_req: Request, res: Response) => {
   }, 100);
 });
 
+/**
+ * ENDPOINT /compound-interest
+ * Calcula juros compostos
+ */
+app.post("/compound-interest", async (req: Request, res: Response) => {
+  try {
+    const {
+      initialAmount,
+      monthlyContribution,
+      interestRate,
+      years,
+    } = req.body;
+
+    // Juros mensal
+    const monthlyRate = interestRate / 100 / 12;
+
+    // Total de meses
+    const months = years * 12;
+
+    let finalAmount = initialAmount;
+
+    for (let i = 0; i < months; i++) {
+      finalAmount =
+        (finalAmount + monthlyContribution) *
+        (1 + monthlyRate);
+    }
+
+    const totalInvested =
+      initialAmount +
+      monthlyContribution * months;
+
+    const totalInterest =
+      finalAmount - totalInvested;
+
+    res.json({
+      totalInvested: Number(totalInvested.toFixed(2)),
+      totalInterest: Number(totalInterest.toFixed(2)),
+      finalAmount: Number(finalAmount.toFixed(2)),
+    });
+
+  } catch (error) {
+    console.error("Compound interest error:", error);
+
+    res.status(500).json({
+      error: "Failed to calculate compound interest",
+    });
+  }
+});
+
+/**
+ * ENDPOINT /save-simulation
+ * Salva simulação no banco
+ */
+app.post("/save-simulation", async (req: Request, res: Response) => {
+  try {
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS saved_simulations (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        initial_amount NUMERIC NOT NULL,
+        monthly_contribution NUMERIC NOT NULL,
+        interest_rate NUMERIC NOT NULL,
+        years NUMERIC NOT NULL,
+        total_invested NUMERIC NOT NULL,
+        total_interest NUMERIC NOT NULL,
+        final_amount NUMERIC NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+    `);
+
+    const {
+      name,
+      initialAmount,
+      monthlyContribution,
+      interestRate,
+      years,
+      totalInvested,
+      totalInterest,
+      finalAmount,
+    } = req.body;
+
+    const result = await pool.query(
+      `
+      INSERT INTO saved_simulations (
+        name,
+        initial_amount,
+        monthly_contribution,
+        interest_rate,
+        years,
+        total_invested,
+        total_interest,
+        final_amount
+      )
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
+      RETURNING *;
+      `,
+      [
+        name,
+        initialAmount,
+        monthlyContribution,
+        interestRate,
+        years,
+        totalInvested,
+        totalInterest,
+        finalAmount,
+      ]
+    );
+
+    res.status(201).json({
+      message: "Simulation saved successfully",
+      data: result.rows[0],
+    });
+
+  } catch (error) {
+    console.error("Save simulation error:", error);
+
+    res.status(500).json({
+      error: "Failed to save simulation",
+    });
+  }
+});
+
 // Teste de coverage
 // app.post("/calc", (req, res) => {
 //   const { a, b, op } = req.body;
