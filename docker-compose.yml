@@ -1,20 +1,20 @@
 version: "3.9"
 
 services:
-  db:
-    image: postgres:15
-    container_name: aws-db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: appdb
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - aws-network
-    restart: always
+  # db:
+  #   image: postgres:15
+  #   container_name: aws-db
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #     POSTGRES_DB: appdb
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - aws-network
+  #   restart: always
   
   backend:
     build:
@@ -25,13 +25,13 @@ services:
       - "3000:3000"
     environment:
       PORT: 3000
-      DB_HOST: db
+      DB_HOST: database-2.coasn9pvdqvb.us-east-1.rds.amazonaws.com
       DB_PORT: 5432
       DB_USER: postgres
-      DB_PASSWORD: postgres
-      DB_NAME: appdb
-    depends_on:
-      - db
+      DB_PASSWORD: Mauricio8126705*
+      DB_NAME: postgres
+    # depends_on:
+    #   - db
     networks:
       - aws-network
     restart: always
