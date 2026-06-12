@@ -16,9 +16,7 @@ variable "availability_zone_c" {
   # default     = "us-east-1c"
 }
 
-# variable "vpc_id" {
-#   type = string
-# }
+##### VPC NETWORK #####
 
 variable "vpc_cidr_block" {
   description = "VPC CIDR block"
@@ -51,5 +49,41 @@ variable "rds_subnet_cidr_block" {
   # default     = "10.0.5.0/24"
 }
 
+##### RDS INSTANCE #####
+
+variable "rds_db_name" {
+  description = "RDS name"
+  type        = string
+}
+
+variable "rds_engine" {
+  description = "RDS engine"
+  type        = string
+}
+
+variable "rds_engine_version" {
+  description = "RDS engine version"
+  type        = string
+}
+
+variable "rds_instance_class" {
+  description = "RDS instance class"
+  type        = string
+}
+
+variable "rds_storage_type" {
+  description = "RDS instance class"
+  type        = string
+}
+
+variable "rds_username" {
+  description = "RDS username"
+  type        = string
+}
+
+variable "rds_password" {
+  description = "RDS password"
+  type        = string
+}
 
 

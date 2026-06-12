@@ -1,5 +1,4 @@
 resource "aws_nat_gateway" "nat1" {
-  # implict dependency on eip resource
   allocation_id = aws_eip.one.id
   subnet_id     = module.network.public1_subnet.id
 
