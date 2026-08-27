@@ -1,3 +1,15 @@
+##### GLOBAL VARIABLES #####
+
+variable "app_port" {
+  description = "app port"
+  type        = string
+}
+
+variable "rds_port" {
+  description = "app port"
+  type        = string
+}
+
 variable "availability_zone_a" {
   description = "az of the project"
   type        = string
@@ -83,6 +95,13 @@ variable "rds_username" {
 
 variable "rds_password" {
   description = "RDS password"
+  type        = string
+}
+
+### ECS ###
+
+variable "ecs_container_name" {
+  description = "ECS container name"
   type        = string
 }
 

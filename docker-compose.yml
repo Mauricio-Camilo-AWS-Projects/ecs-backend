@@ -25,11 +25,11 @@ services:
       - "3000:3000"
     environment:
       PORT: 3000
-      DB_HOST: database-2.coasn9pvdqvb.us-east-1.rds.amazonaws.com
+      DB_HOST: aws-bootcamp-db.coasn9pvdqvb.us-east-1.rds.amazonaws.com
       DB_PORT: 5432
       DB_USER: postgres
-      DB_PASSWORD: Mauricio8126705*
-      DB_NAME: postgres
+      DB_PASSWORD: 
+      DB_NAME: awsbootcamp
     # depends_on:
     #   - db
     networks:
