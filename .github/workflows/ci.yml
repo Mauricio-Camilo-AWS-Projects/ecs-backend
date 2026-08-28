@@ -2,10 +2,8 @@ name: Call CI Pipeline
 
 on:
   push:
-    branches:
-      - hml
-      - main
-      - 'feature/*'
+    branches: [ hml, main ]
+
 jobs:
   ci-workflow:
     uses: Mauricio-Camilo-AWS-Projects/CI-CD-Workflows/.github/workflows/ci.yml@main
