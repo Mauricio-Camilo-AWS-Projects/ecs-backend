@@ -5,8 +5,9 @@
     "target": "ES6",
     "moduleResolution": "node",
     "outDir": "dist",
-    "rootDir": "src"
-
+    "rootDir": "src",
+    "incremental": true,
+    "tsBuildInfoFile": "./.tsbuildinfo"
   },
   "ts-node": {
     "esm": true

@@ -145,9 +145,9 @@ app.post("/compound-interest", async (req: Request, res: Response) => {
 });
 
 /**
- * ENDPOINT /save-simulation
+ * ENDPOINT /save-simulation TESTE DO CODE QL
  * Salva simulação no banco
- */
+ */ 
 app.post("/save-simulation", async (req: Request, res: Response) => {
   try {
 
