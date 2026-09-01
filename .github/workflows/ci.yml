@@ -19,7 +19,3 @@ jobs:
       SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      # SONAR_PROJECT_KEY: Minsait-Teste_ecs-backend
-      # SONAR_ORGANIZATION: minsait-teste
-      # SONAR_HOST_URL: https://sonarcloud.io
