@@ -4,6 +4,11 @@ on:
   push:
     branches: [ hml, main ]
 
+permissions:
+  security-events: write # Send results to Github Code Scanning
+  actions: read 
+  contents: read # Use for CodeQL in some scenarios
+
 jobs:
   ci-workflow:
     uses: Mauricio-Camilo-AWS-Projects/CI-CD-Workflows/.github/workflows/ci.yml@main
