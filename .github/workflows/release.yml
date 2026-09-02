@@ -12,6 +12,7 @@ jobs:
       security-events: write # Send results to Github Code Scanning
       actions: read 
       contents: read # Use for CodeQL in some scenarios
+      id-token: write
 
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
