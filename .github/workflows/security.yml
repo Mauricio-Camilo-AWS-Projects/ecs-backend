@@ -1,0 +1,14 @@
+name: Call Security Workflow
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality-workflow:
+    uses: Mauricio-Camilo-AWS-Projects/CI-CD-Workflows/.github/workflows/security.yml@main
+
+    permissions:
+      security-events: write
+      actions: read 
+      contents: read
