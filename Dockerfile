@@ -1,7 +1,7 @@
 # =========================
 # Stage 1 — Build
 # =========================
-FROM node:22-alpine AS build
+FROM node:22-slim AS build
 
 WORKDIR /app
 
@@ -22,7 +22,7 @@ RUN npm run build
 # =========================
 # Stage 2 — Runtime
 # =========================
-FROM node:22-alpine
+FROM node:22-slim
 
 WORKDIR /app
 
